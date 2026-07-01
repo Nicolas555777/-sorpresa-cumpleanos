@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Feliz cumpleaños</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg1: #02030a;
+      --bg2: #070b1d;
+      --bg3: #0c1230;
+      --glass: rgba(255, 255, 255, 0.10);
+      --glass-strong: rgba(255, 255, 255, 0.16);
+      --text: #ffffff;
+      --accent: #ffd86b;
+      --paper: rgba(250, 250, 255, 0.94);
+      --paper-text: #1a1b33;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      overflow: hidden;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 18% 20%, rgba(125, 90, 255, 0.28), transparent 18%),
+        radial-gradient(circle at 80% 28%, rgba(255, 95, 175, 0.18), transparent 16%),
+        radial-gradient(circle at 50% 72%, rgba(0, 210, 255, 0.12), transparent 18%),
+        linear-gradient(180deg, var(--bg1) 0%, var(--bg2) 50%, #010207 100%);
+    }
+
+    .space,
+    .space::before,
+    .space::after {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      content: "";
+    }
+
+    .space {
+      background-image:
+        radial-gradient(1px 1px at 10% 18%, #fff 99%, transparent 100%),
+        radial-gradient(1px 1px at 22% 64%, #fff 99%, transparent 100%),
+        radial-gradient(1px 1px at 35% 30%, #fff 99%, transparent 100%),
+        radial-gradient(1px 1px at 52% 14%, #fff 99%, transparent 100%),
+        radial-gradient(1px 1px at 68% 44%, #fff 99%, transparent 100%),
+        radial-gradient(1px 1px at 84% 22%, #fff 99%, transparent 100%),
+        radial-gradient(1px 1px at 90% 70%, #fff 99%, transparent 100%),
+        radial-gradient(2px 2px at 60% 28%, rgba(255,255,255,.85) 99%, transparent 100%),
+        radial-gradient(2px 2px at 78% 16%, rgba(255,255,255,.75) 99%, transparent 100%),
+        radial-gradient(circle at 50% 50%, rgba(255,255,255,.08), transparent 38%);
+      animation: drift 20s linear infinite;
+      opacity: 0.95;
+    }
+
+    .space::before {
+      background-image:
+        radial-gradient(circle at 16% 64%, rgba(130, 70, 255, 0.30), transparent 9%),
+        radial-gradient(circle at 72% 24%, rgba(0, 195, 255, 0.22), transparent 11%),
+        radial-gradient(circle at 54% 48%, rgba(255, 100, 180, 0.18), transparent 12%),
+        radial-gradient(circle at 84% 58%, rgba(255, 214, 107, 0.10), transparent 8%);
+      filter: blur(18px);
+      animation: glow 10s ease-in-out infinite alternate;
+    }
+
+    .space::after {
+      background: linear-gradient(120deg, transparent 42%, rgba(255,255,255,.08) 50%, transparent 58%);
+      mix-blend-mode: screen;
+      animation: sweep 14s linear infinite;
+    }
+
+    @keyframes drift {
+      from { transform: translateY(0); }
+      to { transform: translateY(-40px); }
+    }
+
+    @keyframes glow {
+      from { opacity: 0.55; transform: scale(1); }
+      to { opacity: 1; transform: scale(1.08); }
+    }
+
+    @keyframes sweep {
+      from { transform: translateX(-100%); }
+      to { transform: translateX(100%); }
+    }
+
+    .wrap {
+      position: relative;
+      z-index: 1;
+      min-height: 100%;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      text-align: center;
+    }
+
+    h1 {
+      font-family: "Great Vibes", cursive;
+      font-size: clamp(3.5rem, 10vw, 7rem);
+      margin: 0 0 14px;
+      letter-spacing: 0.5px;
+      text-shadow:
+        0 0 18px rgba(255,255,255,.28),
+        0 0 42px rgba(255,165,255,.22);
+    }
+
+    .subtitle {
+      max-width: 720px;
+      margin: 0 auto 26px;
+      font-size: 1rem;
+      opacity: 0.92;
+    }
+
+    .open-btn {
+      border: 0;
+      background: transparent;
+      color: var(--text);
+      cursor: pointer;
+      font-size: 4.2rem;
+      line-height: 1;
+      filter: drop-shadow(0 0 14px rgba(255,255,255,.30));
+      transition: transform .18s ease, filter .18s ease;
+    }
+
+    .open-btn:hover {
+      transform: scale(1.08) translateY(-2px);
+      filter: drop-shadow(0 0 20px rgba(255,255,255,.45));
+    }
+
+    .open-btn:focus-visible,
+    .close:focus-visible {
+      outline: 3px solid #fff;
+      outline-offset: 4px;
+      border-radius: 12px;
+    }
+
+    .hint {
+      margin-top: 8px;
+      font-size: .92rem;
+      opacity: .8;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(1, 3, 10, 0.74);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      backdrop-filter: blur(8px);
+      z-index: 10;
+    }
+
+    .modal.show {
+      display: flex;
+    }
+
+    .letter {
+      width: min(760px, 95vw);
+      max-height: 86vh;
+      overflow: auto;
+      background: linear-gradient(180deg, rgba(255,255,255,.16), rgba(255,255,255,.08));
+      border: 1px solid rgba(255,255,255,.18);
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
+      border-radius: 22px;
+      padding: 28px 24px;
+      text-align: left;
+    }
+
+    .letter h2 {
+      margin: 0 0 12px;
+      font-size: 1.8rem;
+      color: #fff;
+    }
+
+    .paper {
+      background: var(--paper);
+      color: var(--paper-text);
+      border-radius: 18px;
+      padding: 22px 20px;
+      line-height: 1.8;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.55);
+    }
+
+    .paper p {
+      margin: 0 0 14px;
+      font-size: 1.05rem;
+    }
+
+    .close {
+      margin-top: 16px;
+      border: 0;
+      background: rgba(255,255,255,.12);
+      color: #fff;
+      padding: 10px 16px;
+      border-radius: 999px;
+      cursor: pointer;
+    }
+
+    .close:hover {
+      background: rgba(255,255,255,.20);
+    }
+
+    @media (max-width: 640px) {
+      h1 {
+        font-size: clamp(2.9rem, 16vw, 5rem);
+      }
+
+      .open-btn {
+        font-size: 3.6rem;
+      }
+
+      .letter {
+        padding: 20px 16px;
+      }
+
+      .paper {
+        padding: 18px 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="space"></div>
+
+  <main class="wrap">
+    <div>
+      <h1>Feliz cumpleaños</h1>
+      <div class="subtitle">Toca la cartica para abrir el mensaje especial.</div>
+      <button class="open-btn" id="open" aria-label="Abrir carta">✉️</button>
+      <div class="hint">Carta interactiva</div>
+    </div>
+  </main>
+
+  <div class="modal" id="modal" aria-hidden="true">
+    <div class="letter" role="dialog" aria-modal="true" aria-labelledby="title">
+      <h2 id="title">Tu carta</h2>
+      <div class="paper">
+        <p>Querido/a [Nombre]:</p>
+        <p>
+          Hoy celebramos tu vida, tu alegría y todo lo bonito que transmites.
+          Espero que este cumpleaños te regale sonrisas sinceras, abrazos sinceros
+          y momentos que queden para siempre en tu corazón.
+        </p>
+        <p>
+          Que este nuevo año te acerque a tus sueños, te llene de paz y te recuerde
+          lo valioso/a que eres para quienes te quieren.
+        </p>
+        <p>¡Feliz cumpleaños! Con cariño, Nicolás.</p>
+      </div>
+      <button class="close" id="close">Cerrar</button>
+    </div>
+  </div>
+
+  <script>
+    const openBtn = document.getElementById("open");
+    const modal = document.getElementById("modal");
+    const closeBtn = document.getElementById("close");
+
+    openBtn.addEventListener("click", () => {
+      modal.classList.add("show");
+      modal.setAttribute("aria-hidden", "false");
+      closeBtn.focus();
+    });
+
+    closeBtn.addEventListener("click", () => {
+      modal.classList.remove("show");
+      modal.setAttribute("aria-hidden", "true");
+      openBtn.focus();
+    });
+
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) closeBtn.click();
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeBtn.click();
+    });
+  </script>
+</body>
+</html>
